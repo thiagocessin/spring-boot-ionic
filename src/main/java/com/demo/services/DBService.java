@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.demo.domain.Categoria;
@@ -78,9 +79,14 @@ public class DBService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
 	public void initiate() {
 		
 		//chamar métodos necessários
+		
+		//carregarClienteEnderecosTelefones();
 	}
 	
 	
@@ -135,7 +141,7 @@ public class DBService {
 
 	public void carregarClienteEnderecosTelefones() {
 
-		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "11238837635", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Thiago Silva", "tsilva@gmail.com", "11238837635", TipoCliente.PESSOAFISICA,pe.encode("1234"));
 		cli1.getTelefones().addAll(Arrays.asList("12345678", "76767667"));
 
 		Cidade cidade1 = cidadeService.find(1);

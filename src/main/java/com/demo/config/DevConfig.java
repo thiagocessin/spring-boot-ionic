@@ -23,9 +23,9 @@ public class DevConfig {
 
 	@Bean
 	public boolean instantiateDataBase() {
-		if (!"create".equals(strategy)) {
-			return false;
-		}
+//		if (!"create".equals(strategy)) {
+//			return false;
+//		}
 		dbService.initiate();
 		return true;
 	}
