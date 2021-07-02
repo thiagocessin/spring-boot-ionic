@@ -23,6 +23,7 @@ import com.demo.domain.PagamentoComCartao;
 import com.demo.domain.Pedido;
 import com.demo.domain.Produto;
 import com.demo.domain.enums.EstadoPagamento;
+import com.demo.domain.enums.Perfil;
 import com.demo.domain.enums.TipoCliente;
 import com.demo.repositories.CategoriaRepository;
 import com.demo.repositories.CidadeRepository;
@@ -141,7 +142,7 @@ public class DBService {
 
 	public void carregarClienteEnderecosTelefones() {
 
-		Cliente cli1 = new Cliente(null, "Thiago Silva", "tsilva@gmail.com", "11238837635", TipoCliente.PESSOAFISICA,pe.encode("1234"));
+		Cliente cli1 = new Cliente(null, "Ana Cabral", "anacabral@gmail.com", "64733613083", TipoCliente.PESSOAFISICA,pe.encode("1234"));
 		cli1.getTelefones().addAll(Arrays.asList("12345678", "76767667"));
 
 		Cidade cidade1 = cidadeService.find(1);
