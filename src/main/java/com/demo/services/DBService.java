@@ -142,7 +142,8 @@ public class DBService {
 
 	public void carregarClienteEnderecosTelefones() {
 
-		Cliente cli1 = new Cliente(null, "Ana Cabral", "thiagoacessin@gmail.com", "64733613083", TipoCliente.PESSOAFISICA,pe.encode("1234"));
+		Cliente cli1 = new Cliente(null, "Thiago Cessin", "thiagoacessin2@gmail.com", "64733613083", TipoCliente.PESSOAFISICA,pe.encode("1234"));
+		cli1.addPerfi(Perfil.ADMIN);
 		cli1.getTelefones().addAll(Arrays.asList("12345678", "76767667"));
 
 		Cidade cidade1 = cidadeService.find(1);
