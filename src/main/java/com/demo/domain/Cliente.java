@@ -32,22 +32,23 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
+
 	@Column(unique = true)
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-	
+
 	@JsonIgnore
 	private String senha;
 
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)//todas as operações no cliente serão refletidas no endereco
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL) // todas as operações no cliente serão refletidas no
+																// endereco
 	private List<Endereco> enderecos = new ArrayList<>();
 
 	@ElementCollection
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
-	
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
@@ -55,6 +56,7 @@ public class Cliente implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
+
 
 	public Cliente() {
 		addPerfi(Perfil.CLIENTE);
@@ -69,21 +71,17 @@ public class Cliente implements Serializable {
 		this.tipo = (tipo == null) ? null : tipo.getCod();
 		this.senha = senha;
 		addPerfi(Perfil.CLIENTE);
-
 	}
 
-	
-	public Set<Perfil> getPerfis(){
-		return perfis
-				.stream()
-				.map(o-> Perfil.toEnum(o))
-				.collect(Collectors.toSet());
+
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(o -> Perfil.toEnum(o)).collect(Collectors.toSet());
 	}
-	
+
 	public void addPerfi(Perfil perfil) {
 		perfis.add(perfil.getCod());
 	}
-	
+
 	public String getSenha() {
 		return senha;
 	}
@@ -91,7 +89,6 @@ public class Cliente implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
 
 	public List<Pedido> getPedidos() {
 		return pedidos;
