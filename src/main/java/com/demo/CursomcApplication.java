@@ -21,7 +21,7 @@ public class CursomcApplication implements CommandLineRunner {
 	// usando MySql executar somente uma vez para carga na tabela
 	@Override
 	public void run(String... args) throws Exception {
-		s3Service.uploadFile("D:\\Thiago\\temp\\img1.jpg");
+		//s3Service.uploadFile("D:\\Thiago\\temp\\img1.jpg");
 	}
 
 	
