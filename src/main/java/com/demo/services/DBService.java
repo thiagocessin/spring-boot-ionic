@@ -2,6 +2,7 @@ package com.demo.services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +41,9 @@ public class DBService {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private CategoriaService categoriaService;
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -88,6 +92,30 @@ public class DBService {
 		//chamar métodos necessários
 		
 		//carregarClienteEnderecosTelefones();
+		
+		//carregarProdutosInfinityScroll();
+	}
+	
+	public void carregarProdutosInfinityScroll() {
+		
+		
+		List<Produto> listProdutos = new ArrayList<>();
+		
+		
+		for(int i =50; i < 100; i++) {
+			listProdutos.add(new Produto(null, "Produto"+i, 10.00));
+			
+		}
+		
+		Categoria cat1 = categoriaService.find(1);
+		cat1.getProdutos().addAll(listProdutos);
+		
+		for(Produto p : listProdutos) {
+			p.getCategorias().add(cat1);
+		}
+
+		produtoRepository.saveAll(listProdutos);
+		
 	}
 	
 	
@@ -189,7 +217,7 @@ public class DBService {
 //		map.get(1).getProdutos().add(p1);
 //		p1.getCategorias().addAll(Arrays.asList(map.get(1)));
 
-		Produto p2 = new Produto("Luminária", 120.00);
+		Produto p2 = new Produto(null,"Luminária", 120.00);
 		map.get(8).getProdutos().add(p2);
 		p2.getCategorias().addAll(Arrays.asList(map.get(1), map.get(2), map.get(4)));
 
